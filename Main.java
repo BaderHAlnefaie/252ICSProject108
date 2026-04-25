@@ -15,21 +15,27 @@ public class Main {
 			printMenu();
 			sentinel = input.nextLine();
 			
-			if (sentinel.equals("create") && event == null) {
+			if (sentinel.equals("C") && event == null) {
 				
 				event = eventCreation(input);
 				eventManager.addEvent(event);
 				event = null;
 				
 			}
+
+			if (sentinel.equals("SE")){
+				System.out.println("The list of events are: ");
+				System.out.println(eventManager.toString());
+			}
 			
-		} while (!sentinel.equals("quit"));
+		} while (!sentinel.equals("Q"));
 		
 	}
 	// Prints the menu which includes ("create" and "quit")
 	public static void printMenu() {
-		System.out.println("Enter: \"create\" to create a new event!");
-		System.out.println("Enter: \"quit\" to quit the program.");
+		System.out.println("Enter: \"C\" to create a new event!");
+		System.out.println("Enter: \"Q\" to quit the program.");
+		System.out.println("Enter \"SE\" to show the events.");
 	}
 	
 	// Prints the requirements for the event:

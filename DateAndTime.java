@@ -26,24 +26,18 @@ public class DateAndTime implements Comparable<DateAndTime>{
 		this.hour = hour;
 	}
 	
-	// compareTo(other) returns 0 if equal date and time, returns  > 0 if not equal date and time
+	// compareTo(other) returns 0 if the two objects have equal dates and times
 	public int compareTo(DateAndTime other) {
-		return Math.abs(compareTime(other)) + Math.abs(compareDate(other));
-	}
-	// compareDate(other) returns 0 if both instances this.DateAndTime and other.DateAndTime have equal Dates
-	public int compareDate(DateAndTime other){
-		long thisDateCombined =  this.year * 10000 + this.month * 100 + this.day;
-		long otherDateCombined = other.year * 10000 + other.month * 100 + other.day;
-		int dateDifference = (int)(otherDateCombined - thisDateCombined);
-
-		return dateDifference;
-	}
-	// compareTime(other) returns 0 if this.DateAndTime and other.DateAndTime have equal Times
-	public int compareTime(DateAndTime other){
-		int thisTimeCombined = this.hour * 100 + this.minutes;
-		int othertimeCombined = other.hour * 100 + other.minutes;
-		int timeDifference = othertimeCombined - thisTimeCombined;
-		return timeDifference;
+		if (this.year != other.year){
+			return this.year - other.year;
+		}if (this.month != other.month){
+			return this.month - other.month;
+		}if (this.day != other.day){
+			return this.day - other.day;
+		}if (this.hour != other.hour){
+			return this.hour - other.hour;
+		} 
+		return this.minutes - other.minutes;
 	}
 	
 	private static boolean isLeapYear(int year) {
@@ -81,7 +75,7 @@ public class DateAndTime implements Comparable<DateAndTime>{
 	}
 	
 	public String toString() {
-		return getDate() + " " + getTime();
+		return getDate() + "  " + getTime();
 	}
 
 

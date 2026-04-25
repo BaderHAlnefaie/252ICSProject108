@@ -23,4 +23,8 @@ public class Event {
 	public DateAndTime getEndDateAndTime() {
 	 	return end;
 	}
+
+	public String toString(){
+		return "Name: " + name + "\tStart: " + start.toString() + "\tEnd: " + end.toString();
+	}
 }
