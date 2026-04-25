@@ -20,6 +20,7 @@ public class EventManager {
 		return true;
 	}
 
+	@Override 
 	public String toString(){
 		return events.toString();
 	}
