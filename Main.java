@@ -24,8 +24,6 @@ public class Main {
 			}
 
 			if (sentinel.equals("SE")){
-				//System.out.println("The list of events are: ");
-				//System.out.println(eventManager.toString());
 				System.out.println();
 				eventManager.showEvents();
 			}
