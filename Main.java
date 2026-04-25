@@ -39,7 +39,7 @@ public class Main {
 	}
 	
 	// Prints the requirements for the event:
-	// Name, Start Date and Time, End Date and Time
+	// Name, Start Date and Time, End Date and Time, Department, Venue
 	public static Event eventCreation(Scanner input) {
 		String name;
 		int startDay;
@@ -55,6 +55,13 @@ public class Main {
 		
 		int endMinutes;
 		int endHour;
+
+		String depName;
+		String depPersonName;
+		
+		String venueName;
+		String venueInfo;
+		int venueMaxCapacity;
 		
 		String [] tokens;
 		
@@ -79,10 +86,10 @@ public class Main {
 		startHour = Integer.parseInt(tokens[0]);
 		startMinutes = Integer.parseInt(tokens[1]);
 
-
-		DateAndTime Start = new DateAndTime(startDay, startMonth, startYear,
+		DateAndTime Start = new DateAndTime(startDay, startMonth, startYear, 
 			startMinutes, startHour);
 		
+
 		System.out.print("Enter the End Time of the Event (HH:MM):");
 		tokens = input.nextLine().split(" ");
 		endHour = Integer.parseInt(tokens[0]);
@@ -90,8 +97,30 @@ public class Main {
 		
 		DateAndTime End = new DateAndTime(endDay, endMonth, endYear,
 				endMinutes, endHour);
+
+
+		System.out.print("Add the Department's Name: ");
+		depName = input.nextLine();
+
+		System.out.print("Add The Name Of The Person In Charge Of The Department: ");
+		depPersonName = input.nextLine();
+
+		Department dep = new Department(depName, depPersonName);
+
+
+		System.out.print(("Enter the Name of the Venue: "));
+		venueName = input.nextLine();
+
+		System.out.print("Enter The Info Of The Venue: ");
+		venueInfo = input.nextLine();
+
+		System.out.print("Enter The Maximum Capacity Of The Venue: ");
+		venueMaxCapacity = input.nextInt();
+
+		Venue venue = new Venue(venueName, venueInfo, venueMaxCapacity);
 		
-		return new Event(name, Start, End);	
+
+		return new Event(name, Start, End, dep, venue);	
 	}
 
 }

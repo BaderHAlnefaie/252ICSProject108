@@ -5,7 +5,6 @@ public class DateAndTime implements Comparable<DateAndTime>{
 	private int month;
 	private int year;
 	
-	
 	private int minutes;
 	private int hour;
 	
@@ -26,6 +25,19 @@ public class DateAndTime implements Comparable<DateAndTime>{
 		this.hour = hour;
 	}
 	
+	private String getDate() {
+		return day + "/" + month + "/" + year;
+	}
+	
+	private String getTime() {
+		return hour + ":" + minutes;
+	}
+	
+	public String toString() {
+		return getDate() + "  " + getTime();
+	}
+
+
 	// compareTo(other) returns 0 if the two objects have equal dates and times
 	public int compareTo(DateAndTime other) {
 		if (this.year != other.year){
@@ -39,6 +51,7 @@ public class DateAndTime implements Comparable<DateAndTime>{
 		} 
 		return this.minutes - other.minutes;
 	}
+	
 	
 	private static boolean isLeapYear(int year) {
 		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
@@ -65,21 +78,5 @@ public class DateAndTime implements Comparable<DateAndTime>{
 		if (year < 1) return false;
 		return day >= 1 && day <= daysInMonth(month, year);
 	}
-	
-	private String getDate() {
-		return day + "/" + month + "/" + year;
-	}
-	
-	private String getTime() {
-		return hour + ":" + minutes;
-	}
-	
-	public String toString() {
-		return getDate() + "  " + getTime();
-	}
-
-
-
-	
 	
 }
