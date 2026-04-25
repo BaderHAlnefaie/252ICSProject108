@@ -23,4 +23,15 @@ public class EventManager {
 	public String toString(){
 		return events.toString();
 	}
+
+	public void showEvents(){
+		System.out.printf(" ----------------------------------------%n");
+		System.out.printf("|   			List Of Events   		    |%n");
+		System.out.printf(" ----------------------------------------%n");
+
+		for (Event event : events){
+		System.out.printf("| %-10s | %-5s | %-8s |%n", event.getName(), event.getStartDateAndTime(), event.getEndDateAndTime());
+		System.out.printf("--------------------%n");
+		}
+	}
 }
