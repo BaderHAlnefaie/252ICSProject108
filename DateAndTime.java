@@ -8,7 +8,7 @@ public class DateAndTime implements Comparable<DateAndTime>{
 	private int minutes;
 	private int hour;
 	
-	
+
 	public DateAndTime(int day, int month, int year, int minutes, int hour) {
 		if (!isValidDate(day, month, year)) {
 			throw new IllegalArgumentException("Invalid date: " + day + "/" + month + "/" + year);
@@ -26,11 +26,11 @@ public class DateAndTime implements Comparable<DateAndTime>{
 	}
 	
 	private String getDate() {
-		return day + "/" + month + "/" + year;
+		return String.format("%02d/%02d/%04d", day, month, year);
 	}
 	
 	private String getTime() {
-		return hour + ":" + minutes;
+		return String.format("%02d:%02d", hour,  minutes);
 	}
 	
 	public String toString() {

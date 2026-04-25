@@ -24,8 +24,10 @@ public class Main {
 			}
 
 			if (sentinel.equals("SE")){
-				System.out.println("The list of events are: ");
-				System.out.println(eventManager.toString());
+				//System.out.println("The list of events are: ");
+				//System.out.println(eventManager.toString());
+				System.out.println();
+				eventManager.showEvents();
 			}
 			
 		} while (!sentinel.equals("Q"));
@@ -98,7 +100,7 @@ public class Main {
 		DateAndTime End = new DateAndTime(endDay, endMonth, endYear,
 				endMinutes, endHour);
 
-
+		/* 
 		System.out.print("Add the Department's Name: ");
 		depName = input.nextLine();
 
@@ -118,9 +120,10 @@ public class Main {
 		venueMaxCapacity = input.nextInt();
 
 		Venue venue = new Venue(venueName, venueInfo, venueMaxCapacity);
-		
+		*/
 
-		return new Event(name, Start, End, dep, venue);	
+		return new Event(name, Start, End);
+		//return new Event(name, Start, End, dep, venue);	
 	}
 
 }
