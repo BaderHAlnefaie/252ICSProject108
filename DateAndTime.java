@@ -26,13 +26,24 @@ public class DateAndTime implements Comparable<DateAndTime>{
 		this.hour = hour;
 	}
 	
-	// O.dateandtime - this.dateandtime
-	public int compareTo(DateAndTime o) {
-		long thisDateCombined =  year * 10000 + month * 100 + day;
-		long otherDateCombined = o.year * 10000 + month * 100 + day;
-		
-		return (int) (otherDateCombined - thisDateCombined);
-		
+	// compareTo(other) returns 0 if equal date and time, returns  > 0 if not equal date and time
+	public int compareTo(DateAndTime other) {
+		return Math.abs(compareTime(other)) + Math.abs(compareDate(other));
+	}
+	// compareDate(other) returns 0 if both instances this.DateAndTime and other.DateAndTime have equal Dates
+	public int compareDate(DateAndTime other){
+		long thisDateCombined =  this.year * 10000 + this.month * 100 + this.day;
+		long otherDateCombined = other.year * 10000 + other.month * 100 + other.day;
+		int dateDifference = (int)(otherDateCombined - thisDateCombined);
+
+		return dateDifference;
+	}
+	// compareTime(other) returns 0 if this.DateAndTime and other.DateAndTime have equal Times
+	public int compareTime(DateAndTime other){
+		int thisTimeCombined = this.hour * 100 + this.minutes;
+		int othertimeCombined = other.hour * 100 + other.minutes;
+		int timeDifference = othertimeCombined - thisTimeCombined;
+		return timeDifference;
 	}
 	
 	private static boolean isLeapYear(int year) {

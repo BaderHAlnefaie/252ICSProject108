@@ -21,7 +21,6 @@ public class Main {
 				eventManager.addEvent(event);
 				event = null;
 				
-				
 			}
 			
 		} while (!sentinel.equals("quit"));
@@ -73,23 +72,20 @@ public class Main {
 		tokens = input.nextLine().split(" ");
 		startHour = Integer.parseInt(tokens[0]);
 		startMinutes = Integer.parseInt(tokens[1]);
+
+
+		DateAndTime Start = new DateAndTime(startDay, startMonth, startYear,
+			startMinutes, startHour);
 		
 		System.out.print("Enter the End Time of the Event (HH:MM):");
 		tokens = input.nextLine().split(" ");
 		endHour = Integer.parseInt(tokens[0]);
 		endMinutes = Integer.parseInt(tokens[1]);
 		
-		// int day, int month, int year, int minutes, int hour
-		DateAndTime Start = new DateAndTime(startDay, startMonth, startYear,
-											startMinutes, startHour);
-		
 		DateAndTime End = new DateAndTime(endDay, endMonth, endYear,
 				endMinutes, endHour);
 		
-		
-		return new Event(name, Start, End);
-				
-		
+		return new Event(name, Start, End);	
 	}
 
 }
