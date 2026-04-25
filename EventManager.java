@@ -24,14 +24,18 @@ public class EventManager {
 		return events.toString();
 	}
 
-	public void showEvents(){
-		System.out.printf(" ----------------------------------------%n");
-		System.out.printf("|   			List Of Events   		    |%n");
-		System.out.printf(" ----------------------------------------%n");
-
-		for (Event event : events){
-		System.out.printf("| %-10s | %-5s | %-8s |%n", event.getName(), event.getStartDateAndTime(), event.getEndDateAndTime());
-		System.out.printf("--------------------%n");
+	public void showEvents() {
+		String line = "-".repeat(67);
+		System.out.println(line);
+		System.out.printf("|%-65s|%n", "                        List Of Events");
+		System.out.println(line);
+	
+		for (Event event : events) {
+			System.out.printf("| %-23s | %-17s | %-17s |%n",
+				event.getName(),
+				event.getStartDateAndTime(),
+				event.getEndDateAndTime());
 		}
+		System.out.println(line);
 	}
 }
