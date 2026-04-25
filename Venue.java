@@ -8,6 +8,9 @@ public class Venue {
     private String info;
     private int capacity;
 
+    // This might be helpful for an idea 
+    private String[] venues = {"Sports", "Lecture Hall", "Conference Hall", "Public Space"};
+
     // Constructor
     public Venue(String name, String info, int capacity) {
         this.name = name;
@@ -24,6 +27,16 @@ public class Venue {
     }
     public int getCapacity() {
         return this.capacity;
+    }
+
+    public String printVenues(){
+        String str = "";
+
+        for (int i = 0; i < venues.length; i++){
+            str += i + "- " + venues[i] + "\n";
+        }
+
+        return str;
     }
 
     @Override
