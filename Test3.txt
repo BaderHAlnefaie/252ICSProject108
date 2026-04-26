@@ -1,0 +1,38 @@
+C
+Morning Slot
+5 5 2000
+5 5 2000
+08 00
+10 00
+C
+Touches Right Of Morning
+5 5 2000
+5 5 2000
+10 00
+12 00
+C
+Touches Left Of Morning
+5 5 2000
+5 5 2000
+06 00
+08 00
+C
+Continues After Noon
+5 5 2000
+5 5 2000
+12 00
+14 00
+C
+One Minute Overlap
+5 5 2000
+5 5 2000
+13 59
+15 00
+C
+Ends Exactly When Last Begins
+5 5 2000
+5 5 2000
+05 00
+06 00
+SE
+Q

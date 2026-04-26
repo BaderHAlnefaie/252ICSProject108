@@ -1,23 +1,40 @@
+import java.io.FileNotFoundException;
+import java.io.File;
 import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
+		Scanner input;
+		boolean showMenu;
+		String fileName = "[PATH_NAME_GOES_HERE]";
+		try{
+		 input = new Scanner(new File(fileName));
+		 showMenu = false;
+		}catch(FileNotFoundException e){
+			System.out.println("\n\n[ERROR]: File \"" + fileName + "\" Not Found");
+			System.out.println("Substituting to Manual Entry!");
+			input = new Scanner(System.in);
+			showMenu = true;
+		}
 		String sentinel;
 		Event event = null;
 		EventManager eventManager = new EventManager();
 		
 		
 		
-		System.out.println("Welcome To Bader's Event Managing System!\n");
+		System.out.println("\n\nWelcome To Bader's Event Managing System!\n");
 		
 		do {
+			if(showMenu){
 			printMenu();
+			}
+
 			sentinel = input.nextLine();
+			
 			
 			if (sentinel.equals("C") && event == null) {
 				
-				event = eventCreation(input);
+				event = eventCreation(input, showMenu);
 				eventManager.addEvent(event);
 				event = null;
 				
@@ -40,7 +57,7 @@ public class Main {
 	
 	// Prints the requirements for the event:
 	// Name, Start Date and Time, End Date and Time, Department, Venue
-	public static Event eventCreation(Scanner input) {
+	public static Event eventCreation(Scanner input, boolean showMenu) {
 		String name;
 		int startDay;
 		int startMonth;
@@ -65,9 +82,11 @@ public class Main {
 		
 		String [] tokens;
 		
+		if (showMenu)
 		System.out.print("Enter the Name of the Event: ");
-		name = input.nextLine();
+		name = input.nextLine().trim();
 		
+		if (showMenu)
 		System.out.print("Enter the Start Date of the Event (DD MM YYYY): ");
 		tokens = input.nextLine().split(" ");
 		startDay = Integer.parseInt(tokens[0]);
@@ -75,25 +94,29 @@ public class Main {
 		startYear = Integer.parseInt(tokens[2]);
 		
 		
+		if (showMenu)
 		System.out.print("Enter the End Date of the Event (DD MM YYYY): ");
 		tokens = input.nextLine().split(" ");
 		endDay = Integer.parseInt(tokens[0]);
 		endMonth = Integer.parseInt(tokens[1]);
 		endYear = Integer.parseInt(tokens[2]);
 		
+		if (showMenu)
 		System.out.print("Enter the Start Time of the Event (HH MM):");
 		tokens = input.nextLine().split(" ");
 		startHour = Integer.parseInt(tokens[0]);
 		startMinutes = Integer.parseInt(tokens[1]);
+		
 
 		DateAndTime Start = new DateAndTime(startDay, startMonth, startYear, 
 			startMinutes, startHour);
 		
-
+		if (showMenu)
 		System.out.print("Enter the End Time of the Event (HH:MM):");
 		tokens = input.nextLine().split(" ");
 		endHour = Integer.parseInt(tokens[0]);
 		endMinutes = Integer.parseInt(tokens[1]);
+		
 		
 		DateAndTime End = new DateAndTime(endDay, endMonth, endYear,
 				endMinutes, endHour);
