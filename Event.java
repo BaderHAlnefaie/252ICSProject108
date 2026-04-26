@@ -6,6 +6,9 @@ public class Event {
 	private Venue venue;
 	
 	public Event(String name, DateAndTime start, DateAndTime end, Department dep, Venue venue) {
+		if (start.compareTo(end) >= 0){
+			throw new IllegalArgumentException("[ERROR]: Invalid Start And End Dates - [Required]: Start Date < End Date");
+		}
 		this.name = name;
 		this.start = start;
 		this.end = end;	

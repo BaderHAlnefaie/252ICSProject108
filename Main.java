@@ -62,7 +62,7 @@ public class Main {
 		System.out.println("Enter: \"C\" to create a new event!");
 		System.out.println("Enter: \"Q\" to quit the program.");
 		System.out.println("Enter \"SE\" to show the events.");
-		System.out.println("Enter \"SI\" to show the events.");
+		System.out.println("Enter \"SI\" to show the event's information.");
 	}
 
 	// Prints the requirements for the event:
