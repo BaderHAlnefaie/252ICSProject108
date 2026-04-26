@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public class EventManager {
-	ArrayList<Event> events = new ArrayList<>();
+	private ArrayList<Event> events = new ArrayList<>();
 	
 	public void addEvent(Event event) {
 		if (!isFree(event)) {
@@ -46,6 +46,39 @@ public class EventManager {
 				event.getStartDateAndTime(),
 				event.getEndDateAndTime());
 		}
+		System.out.println(line);
+	}
+
+	public void showEventInfo(int index){
+		if (index < 0 || index > events.size() - 1){
+			System.out.println("[Error]: Invalid index. Has to be >= 0 and <= " + (events.size() - 1));
+		}
+		showEventInfo(events.get(index));
+	}
+
+	public void showEventInfo(Event event) {
+		if (event == null) {
+			System.out.println("No event to display.");
+			return;
+		}
+	
+		String line = "-".repeat(71);
+		Department dep = event.getDepartment();
+		Venue venue = event.getVenue();
+	
+		System.out.println(line);
+		System.out.printf("|%-69s|%n", "                          Event Details");
+		System.out.println(line);
+	
+		System.out.printf("| %-12s : %-54s|%n", "Name",       event.getName());
+		System.out.printf("| %-12s : %-54s|%n", "Start",      event.getStartDateAndTime());
+		System.out.printf("| %-12s : %-54s|%n", "End",        event.getEndDateAndTime());
+		System.out.printf("| %-12s : %-54s|%n", "Department", dep   != null ? dep.getName()   : "(not set)");
+		System.out.printf("| %-12s : %-54s|%n", "In Charge",  dep   != null ? dep.getPerson() : "(not set)");
+		System.out.printf("| %-12s : %-54s|%n", "Venue",      venue != null ? venue.getName() : "(not set)");
+		System.out.printf("| %-12s : %-54s|%n", "Venue Info", venue != null ? venue.getInfo() : "(not set)");
+		System.out.printf("| %-12s : %-54s|%n", "Capacity",   venue != null ? String.valueOf(venue.getCapacity()) : "(not set)");
+	
 		System.out.println(line);
 	}
 }

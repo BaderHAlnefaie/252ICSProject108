@@ -5,12 +5,12 @@ public class Event {
 	private Department dep;
 	private Venue venue;
 	
-	public Event(String name, DateAndTime start, DateAndTime end) {
+	public Event(String name, DateAndTime start, DateAndTime end, Department dep, Venue venue) {
 		this.name = name;
 		this.start = start;
 		this.end = end;	
-		//this.dep = dep;
-		//this.venue = venue;
+		this.dep = dep;
+		this.venue = venue;
 	}
 	
 	public String getName() {
