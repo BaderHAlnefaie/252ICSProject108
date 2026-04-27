@@ -62,12 +62,12 @@ public class EventManager {
 			return;
 		}
 	
-		String line = "-".repeat(71);
+		String line = "-".repeat(72);
 		Department dep = event.getDepartment();
 		Venue venue = event.getVenue();
 	
 		System.out.println(line);
-		System.out.printf("|%-69s|%n", "                          Event Details");
+		System.out.printf("|%-70s|%n", "                          Event Details");
 		System.out.println(line);
 	
 		System.out.printf("| %-12s : %-54s|%n", "Name",       event.getName());

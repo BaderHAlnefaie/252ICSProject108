@@ -1,5 +1,5 @@
-import java.io.FileNotFoundException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		// Scanner input;
 		boolean showMenu;
-		String fileName = "[FILE_NAME_GOES_HERE]";
+		String fileName = "Test.txt";
 		String sentinel;
 		int index;
 		Event event = null;
@@ -47,17 +47,12 @@ public class Main {
 				eventManager.showEvents();
 			}
 
-			if (sentinel.equals("SI")) {
-				// System.out.println("Enter the Event's Index: ");
-				// index = Integer.parseInt(input.nextLine().trim());
-				index = Input.nextInt("Enter the Event's Index: ");
-				eventManager.showEventInfo(index);
-				index = -1;
-			}
-			
-		} while (!sentinel.equals("Q"));
-		
-	}
+		if (sentinel.equals("SI")) {
+			// System.out.println("Enter the Event's Index: ");
+			// index = Integer.parseInt(input.nextLine().trim());
+			index = Input.nextInt("Enter the Event's Index: ");
+			eventManager.showEventInfo(index);
+			index = -1;
 
 	// Prints the menu which includes ("create" and "quit")
 	public static void printMenu() {
