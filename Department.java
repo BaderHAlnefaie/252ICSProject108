@@ -17,6 +17,6 @@ public class Department {
 
     @Override
     public String toString() {
-        return this.person + " is responsible for " + this.name + "Department";
+        return this.person + " is responsible for " + this.name + " Department";
     }
 }

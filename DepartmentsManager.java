@@ -1,4 +1,6 @@
+import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class DepartmentsManager {
     public static ArrayList<Department> availableDepartments = addAllDepartments();
@@ -6,22 +8,27 @@ public abstract class DepartmentsManager {
     // A function to add all the available Departments
     static private ArrayList<Department> addAllDepartments() {
         ArrayList<Department> result = new ArrayList<>();
-        result.add( new Department("ICS", "Malak"));
-        result.add( new Department("COE", "Mohammad Waleed Shinwari"));
-        result.add( new Department("ISE", "Yasser Almoghathawi"));
+        try (Scanner fileScnr = new Scanner(new FileInputStream("Departments.txt"))) {
+            while (fileScnr.hasNextLine()) {
+                String[] line = fileScnr.nextLine().split(",");
+                result.add(new Department(line[0], line[1]));
+            }
+        } catch (Exception e) {
+            System.out.println("File Not Found");
+        }
 
         return result;
     }
 
     // This Method returns the Department based on the user input
     // If the the department does not exist it will throw an IllegalArgumentException
-    public static Department getDepartment(String name) throws IllegalArgumentException {
+    public static Department getDepartment(String name) /*throws IllegalArgumentException*/ {
         for (Department dept : availableDepartments) {
             if (name.equals(dept.getName())) {
                 return dept;
             }
         }
-        throw new IllegalArgumentException("Department not found: " + name);
+        throw new IllegalArgumentException("Department " + name + " was not found");
     }
     // Example:
     // Enter the name of the department: ICS (In the Main class)

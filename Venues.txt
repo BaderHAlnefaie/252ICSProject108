@@ -1,0 +1,8 @@
+// Number 1 is for Conferance Hall, 2 for a Lecture Hall, 3 for a Sport Area and 4 Public Space
+// Any other number will throw an Exception, These 2 lines are ignored by the program
+1, B24, 50, 24
+1, Building 22, 500, 22
+
+2, Building 22 Lecture Hall, 300, 22, 111
+
+3, Main Stadium, 500, Football

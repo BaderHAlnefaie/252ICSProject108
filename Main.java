@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		Scanner input;
+		// Scanner input;
 		boolean showMenu;
 		String fileName = "[FILE_NAME_GOES_HERE]";
 		String sentinel;
@@ -13,42 +13,44 @@ public class Main {
 		Event event = null;
 		EventManager eventManager = new EventManager();
 		
-		try{
-		 	input = new Scanner(new File(fileName));
+		try {
+		 	Scanner input = new Scanner(new File(fileName));
 		 	showMenu = false;
-		}catch(FileNotFoundException e){
+		} catch(FileNotFoundException e){
 			System.out.println("\n\n[ERROR]: File \"" + fileName + "\" Not Found");
 			System.out.println("Substituting to Manual Entry!");
-			input = new Scanner(System.in);
+			// input = new Scanner(System.in);
 			showMenu = true;
 		}
 		
 		System.out.println("\n\nWelcome To Bader's Event Managing System!\n");
 		
 		do {
-			if(showMenu){
-			printMenu();
+			if(showMenu) {
+				printMenu();
 			}
 
-			sentinel = input.nextLine();
+			// sentinel = input.nextLine();
+			sentinel = Input.nextLine();
 			
 			
 			if (sentinel.equals("C") && event == null) {
-				
-				event = eventCreation(input, showMenu);
+
+				event = eventCreation(/*input, showMenu*/);
 				eventManager.addEvent(event);
 				event = null;
 				
 			}
 
-			if (sentinel.equals("SE")){
+			if (sentinel.equals("SE")) {
 				System.out.println();
 				eventManager.showEvents();
 			}
 
-			if (sentinel.equals("SI")){
-				System.out.println("Enter the Event's Index: ");
-				index = Integer.parseInt(input.nextLine().trim());
+			if (sentinel.equals("SI")) {
+				// System.out.println("Enter the Event's Index: ");
+				// index = Integer.parseInt(input.nextLine().trim());
+				index = Input.nextInt("Enter the Event's Index: ");
 				eventManager.showEventInfo(index);
 				index = -1;
 			}
@@ -63,6 +65,7 @@ public class Main {
 		System.out.println("Enter: \"Q\" to quit the program.");
 		System.out.println("Enter \"SE\" to show the events.");
 		System.out.println("Enter \"SI\" to show the events.");
+		System.out.println(VenueManager.availableVenues);
 	}
 
 	// Prints the requirements for the event:
@@ -150,9 +153,74 @@ public class Main {
 			System.out.print("Enter The Maximum Capacity Of The Venue: ");
 		venueMaxCapacity = Integer.parseInt(input.nextLine().trim());
 
-		Venue venue = new Venue(venueName, venueInfo, venueMaxCapacity);
+		// Venue venue = new Venue(venueName, venueInfo, venueMaxCapacity);
 
-		return new Event(name, Start, End, dep, venue);
+		return new Event(name, Start, End, dep, null);
 	}
 
+
+
+	public static Event eventCreation() {
+		return new Event(getName(), getStartDate(), getEndDate(), getDepartment(), getVenue());
+	}
+
+	public static String getName() {
+		return Input.nextLine("Enter the Name of the Event: ");
+	}
+	public static DateAndTime getStartDate() {
+		System.out.println("Enter the Start Date of the Event: ");
+		int startDay = Input.nextInt("Day: ");
+		int startMonth = Input.nextInt("Month: ");
+		int startYear = Input.nextInt("Year: ");
+
+		System.out.println("Enter the Start Time of the Event: ");
+		int startHour = Input.nextInt("Hour: ");
+		int startMinute = Input.nextInt("Minutes: ");
+
+		return new DateAndTime(startDay, startMonth, startYear, startMinute, startHour);
+	}
+	public static DateAndTime getEndDate() {
+		System.out.println("Enter the End Date of the Event: ");
+		int endDay = Input.nextInt("Day: ");
+		int endMonth = Input.nextInt("Month: ");
+		int endYear = Input.nextInt("Year: ");
+
+		System.out.println("Enter the End Time of the Event: ");
+		int endHour = Input.nextInt("Hour: ");
+		int endMinute = Input.nextInt("Minutes: ");
+
+		return new DateAndTime(endDay, endMonth, endYear, endMinute, endHour);
+	}
+	public static Department getDepartment() {
+		return DepartmentsManager.getDepartment(Input.next("Enter the Department Name: "));
+	}
+	public static Venue getVenue() {
+		System.out.println("Here are the Avilable Venues:");
+		System.out.println("1. Sport Area");
+		System.out.println("2. Lecture Hall");
+		System.out.println("3. Conference Hall");
+		System.out.println("4. Public Space");
+
+		int selection = Input.nextInt("Enter the Number of Your Selection: ");
+
+		switch (selection) {
+			case 1:
+				System.out.println(VenueManager.getSportAreas());
+				break;
+			case 2:
+				System.out.println(VenueManager.getLectureHalls());
+				break;
+			case 3:
+				System.out.println(VenueManager.getConferenceHalls());
+				break;
+			case 4:
+				System.out.println(VenueManager.getPublicAreas());
+				break;
+			default:
+				break;
+		}
+
+		
+		return VenueManager.availableVenues.get(selection);
+	}
 }
