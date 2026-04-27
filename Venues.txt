@@ -1,8 +1,16 @@
 // Number 1 is for Conferance Hall, 2 for a Lecture Hall, 3 for a Sport Area and 4 Public Space
 // Any other number will throw an Exception, These 2 lines are ignored by the program
-1, B24, 50, 24
+1, Building 24 Hall, 500, 24
 1, Building 22, 500, 22
+1, Building 76 Auditorium, 500, 76
+1, Building 54 Main Hall, 1000, 54
 
 2, Building 22 Lecture Hall, 300, 22, 111
+2, Building 22 Labs, 30, 22, 336
+2, Building 63 First Hall, 300, 63, 331
+2, Building 63 Second Hall, 300, 63, 362
 
 3, Main Stadium, 500, Football
+3, Sport Center, 500, Volleyball
+
+4, Escape Room, 5, AlKhobar

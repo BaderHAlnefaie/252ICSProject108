@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -26,8 +27,8 @@ public class Main {
 		System.out.println("\n\nWelcome To Bader's Event Managing System!\n");
 		
 		do {
-			if(showMenu){
-			printMenu();
+			if(showMenu) {
+				printMenu();
 			}
 
 			// sentinel = input.nextLine();
@@ -36,7 +37,7 @@ public class Main {
 			
 			if (sentinel.equals("C") && event == null) {
 				
-			event = eventCreation(/*input, showMenu*/);
+				event = eventCreation(/*input, showMenu*/);
 				eventManager.addEvent(event);
 				event = null;
 				
@@ -201,25 +202,31 @@ public class Main {
 		System.out.println("4. Public Space");
 
 		int selection = Input.nextInt("Enter the Number of Your Selection: ");
+		
+		ArrayList<Venue> selectedVenueType;
 
 		switch (selection) {
 			case 1:
-				System.out.println(VenueManager.getSportAreas());
+				selectedVenueType = VenueManager.getSportAreas();
 				break;
 			case 2:
-				System.out.println(VenueManager.getLectureHalls());
+				selectedVenueType = VenueManager.getLectureHalls();
 				break;
 			case 3:
-				System.out.println(VenueManager.getConferenceHalls());
+				selectedVenueType = VenueManager.getConferenceHalls();
 				break;
 			case 4:
-				System.out.println(VenueManager.getPublicAreas());
+				selectedVenueType = VenueManager.getPublicAreas();
 				break;
 			default:
-				break;
+				throw new IllegalArgumentException("Selection must be from 1 to 4");
 		}
 
+		System.out.println("Here are the Available Venues");
+		VenueManager.printVenues(selectedVenueType);
 		
-		return VenueManager.availableVenues.get(selection);
+		selection = Input.nextInt("Enter the Number of Your Selection: ");
+
+		return selectedVenueType.get(selection-1);
 	}
 }

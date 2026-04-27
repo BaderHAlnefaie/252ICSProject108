@@ -104,6 +104,12 @@ public abstract class VenueManager {
         return result;
     }
 
+    public static void printVenues(ArrayList<Venue> venuesArray) {
+        for (int i = 0; i < venuesArray.size(); i++) {
+            System.out.print(i+1 + ". "); // 1.  2.  3.
+            System.out.println(venuesArray.get(i));
+        }
+    }
 
     // public static ArrayList<Venue> searchByBuilding(int num) {
     //     ArrayList<Venue> result = new ArrayList<>();
