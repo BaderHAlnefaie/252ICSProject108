@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		// Scanner input;
 		boolean showMenu;
-		String fileName = "Test.txt";
+		String fileName = "[TEST File Here]"; // Test.txt
 		String sentinel;
 		int index;
 		Event event = null;
@@ -26,8 +26,8 @@ public class Main {
 		System.out.println("\n\nWelcome To Bader's Event Managing System!\n");
 		
 		do {
-			if(showMenu) {
-				printMenu();
+			if(showMenu){
+			printMenu();
 			}
 
 			// sentinel = input.nextLine();
@@ -35,32 +35,36 @@ public class Main {
 			
 			
 			if (sentinel.equals("C") && event == null) {
-
-				event = eventCreation(/*input, showMenu*/);
+				
+			event = eventCreation(/*input, showMenu*/);
 				eventManager.addEvent(event);
 				event = null;
 				
 			}
 
-			if (sentinel.equals("SE")) {
+			if (sentinel.equals("SE")){
 				System.out.println();
 				eventManager.showEvents();
 			}
 
-		if (sentinel.equals("SI")) {
-			// System.out.println("Enter the Event's Index: ");
-			// index = Integer.parseInt(input.nextLine().trim());
-			index = Input.nextInt("Enter the Event's Index: ");
-			eventManager.showEventInfo(index);
-			index = -1;
+			if (sentinel.equals("SI")) {
+				// System.out.println("Enter the Event's Index: ");
+				// index = Integer.parseInt(input.nextLine().trim());
+				index = Input.nextInt("Enter the Event's Index: ");
+				eventManager.showEventInfo(index);
+				index = -1;
+			}
+			
+		} while (!sentinel.equals("Q"));
+	}
 
 	// Prints the menu which includes ("create" and "quit")
 	public static void printMenu() {
 		System.out.println("Enter: \"C\" to create a new event!");
 		System.out.println("Enter: \"Q\" to quit the program.");
 		System.out.println("Enter \"SE\" to show the events.");
-		System.out.println("Enter \"SI\" to show the events.");
-		System.out.println(VenueManager.availableVenues);
+		System.out.println("Enter \"SI\" to show one event in detail");
+
 	}
 
 	// Prints the requirements for the event:
