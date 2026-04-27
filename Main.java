@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner input;
 		boolean showMenu;
-		String fileName = "[FILE_NAME_GOES_HERE]";
+		String fileName = "Test.txt";
 		String sentinel;
 		int index;
 		Event event = null;
@@ -47,7 +47,8 @@ public class Main {
 			}
 
 			if (sentinel.equals("SI")){
-				System.out.println("Enter the Event's Index: ");
+				if (showMenu)
+					System.out.println("Enter the Event's Index: ");
 				index = Integer.parseInt(input.nextLine().trim());
 				eventManager.showEventInfo(index);
 				index = -1;
