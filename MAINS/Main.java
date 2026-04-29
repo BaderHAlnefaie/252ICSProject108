@@ -1,18 +1,17 @@
 package MAINS;
+import DEPARTMENTS.*;
+import EVENTS.*;
+import VENUES.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import DEPARTMENTS.*;
-import EVENTS.*;
-import VENUES.*;
-
 public class Main {
 
 	public static void main(String[] args) {
 		boolean showMenu;
-		String fileName = "Test.txt";
+		String fileName = "[FILE_NAME_GOES_HERE]";
 		String sentinel;
 		int index;
 		EventManager eventManager = new EventManager();
