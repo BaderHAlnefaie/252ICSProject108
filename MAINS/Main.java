@@ -20,6 +20,7 @@ public class Main {
 		try {
 			Input.setSource(new Scanner(new File(fileName)));
 			showMenu = false;
+			Input.showPrompts = false;
 		} catch (FileNotFoundException e) {
 			System.out.println("\n\n[ERROR]: File \"" + fileName + "\" Not Found");
 			System.out.println("Substituting to Manual Entry!");
@@ -71,16 +72,18 @@ public class Main {
 	}
 
 	public static String getName() {
-		System.out.println();
+		if (Input.showPrompts) System.out.println();
 		return Input.nextLine("Enter the Name of the Event: ");
 	}
 
 	public static Type getType() {
 		while (true) {
 			try {
-				System.out.println();
-				System.out.println("Available Event Types:");
-				Type.printAvailableTypes();
+				if (Input.showPrompts) {
+					System.out.println();
+					System.out.println("Available Event Types:");
+					Type.printAvailableTypes();
+				}
 				int selection = Input.nextInt("Enter the Number of the Event Type: ");
 				if (selection < 1 || selection > Type.availableTypes.size()) {
 					throw new ValidationException("Selection must be from 1 to " + Type.availableTypes.size() + ", Try Again");
@@ -95,14 +98,14 @@ public class Main {
 	}
 
 	public static DateAndTime getStartDate() {
-		System.out.println();
+		if (Input.showPrompts) System.out.println();
 		int[] date = parseDate(Input.nextLine("Enter the Start Date of the Event (DD MM YYYY): "));
 		int[] time = parseTime(Input.nextLine("Enter the Start Time of the Event (HH MM): "));
 		return new DateAndTime(date[0], date[1], date[2], time[1], time[0]);
 	}
 
 	public static DateAndTime getEndDate() {
-		System.out.println();
+		if (Input.showPrompts) System.out.println();
 		int[] date = parseDate(Input.nextLine("Enter the End Date of the Event (DD MM YYYY): "));
 		int[] time = parseTime(Input.nextLine("Enter the End Time of the Event (HH MM): "));
 		return new DateAndTime(date[0], date[1], date[2], time[1], time[0]);
@@ -135,7 +138,7 @@ public class Main {
 	public static Department getDepartment() {
 		while (true) {
 			try {
-				System.out.println();
+				if (Input.showPrompts) System.out.println();
 				return DepartmentsManager.getDepartment(Input.next("Enter the Department Name: "));
 			} catch(ValidationException e) {
 				System.out.println(e.getMessage());
@@ -147,13 +150,15 @@ public class Main {
 	public static Venue getVenue() {
 		while (true) {
 			try {
-				System.out.println();
+				if (Input.showPrompts) {
+					System.out.println();
 
-				System.out.println("Here are the Available Venue Types:");
-				System.out.println("1. Sport Area");
-				System.out.println("2. Lecture Hall");
-				System.out.println("3. Conference Hall");
-				System.out.println("4. Public Space");
+					System.out.println("Here are the Available Venue Types:");
+					System.out.println("1. Sport Area");
+					System.out.println("2. Lecture Hall");
+					System.out.println("3. Conference Hall");
+					System.out.println("4. Public Space");
+				}
 
 				int selection = Input.nextInt("Enter the Number of Your Selection: ");
 
@@ -178,11 +183,12 @@ public class Main {
 						throw new ValidationException("Selection must be from 1 to 4, Try Again");
 				}
 
-				System.out.println();
-				System.out.println("Here are the Available Venues");
-				VenueManager.printVenues(selectedVenueType);
-
-				System.out.println();
+				if (Input.showPrompts) {
+					System.out.println();
+					System.out.println("Here are the Available Venues");
+					VenueManager.printVenues(selectedVenueType);
+					System.out.println();
+				}
 				selection = Input.nextInt("Enter the Number of Your Selection: ");
 				selectedVenue = selectedVenueType.get(selection-1);
 
