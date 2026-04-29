@@ -19,7 +19,8 @@ public class Main {
 		Event event = null;
 		EventManager eventManager = new EventManager();
 		
-		try(Scanner input = new Scanner(new File(fileName))) {
+		try {
+			Input.setSource(new Scanner( new File(fileName) ));
 		 	showMenu = false;
 		} catch(FileNotFoundException e) {
 			System.out.println("\n\n[ERROR]: File \"" + fileName + "\" Not Found");
