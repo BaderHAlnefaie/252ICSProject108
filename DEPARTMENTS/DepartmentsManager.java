@@ -15,7 +15,9 @@ public abstract class DepartmentsManager {
         ArrayList<Department> result = new ArrayList<>();
         try (Scanner fileScnr = new Scanner(new FileInputStream("Departments.txt"))) {
             while (fileScnr.hasNextLine()) {
-                String[] line = fileScnr.nextLine().split(",");
+                String raw = fileScnr.nextLine().trim();
+                if (raw.isEmpty()) continue;
+                String[] line = raw.split("\\s*,\\s*");
                 result.add(new Department(line[0], line[1]));
             }
         } catch (Exception e) {

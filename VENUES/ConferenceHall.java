@@ -5,7 +5,7 @@ public class ConferenceHall extends Venue {
     public ConferenceHall(String name, int capacity, int building) {
         super(name, capacity);
         this.building = building;
-        super.setInfo("This is a Conferance Hall in Building " + this.building);
+        super.setInfo("This is a Conference Hall in Building " + this.building);
     }
 
     @Override

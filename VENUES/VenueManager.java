@@ -42,7 +42,7 @@ public abstract class VenueManager {
                         result.add(new PublicArea(name, capacity, location));
                         break;
                     default:
-                        throw new ValidationException("Couldn't Find the Correspnding Venue");
+                        throw new ValidationException("Couldn't Find the Corresponding Venue");
                 }
             }
         } catch (FileNotFoundException e) {
@@ -50,13 +50,8 @@ public abstract class VenueManager {
         }
         catch (Exception e) {
             System.out.println("[ERROR]: " + e.getMessage());
-            System.out.println("smt is Wrong");
+            System.out.println("Something went wrong while loading venues");
         }
-
-        // result.add( new Venue("Sport Area", "This is a Sport Area", 100));
-        // result.add( new Venue("Lecture Hall", "This is a Lecture Hall", 200));
-        // result.add( new Venue("Conference Hall", "This is a Sport Area", 150));
-        // result.add( new Venue("Public Space", "This is a Sport Area", 300));
 
         return result;
     }
