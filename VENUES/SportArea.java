@@ -11,6 +11,6 @@ public class SportArea extends Venue {
 
     @Override
     public String toString() {
-        return this.name + ", " + this.court + "Court, Capacity: " + this.capacity;
+        return this.name + ", " + this.court + " Court, Capacity: " + this.capacity;
     }
 }

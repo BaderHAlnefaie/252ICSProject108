@@ -79,6 +79,7 @@ public class EventManager {
 		System.out.println(line);
 	
 		System.out.printf("| %-12s : %-54s|%n", "Name",       event.getName());
+		System.out.printf("| %-12s : %-54s|%n", "Type",       event.getType() != null ? event.getType().toString() : "(not set)");
 		System.out.printf("| %-12s : %-54s|%n", "Start",      event.getStartDateAndTime());
 		System.out.printf("| %-12s : %-54s|%n", "End",        event.getEndDateAndTime());
 		System.out.printf("| %-12s : %-54s|%n", "Department", dep   != null ? dep.getName()   : "(not set)");

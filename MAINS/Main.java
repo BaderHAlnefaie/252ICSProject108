@@ -67,40 +67,70 @@ public class Main {
 	}
 
 	public static Event eventCreation() {
-		return new Event(getName(), getStartDate(), getEndDate(), getDepartment(), getVenue());
+		return new Event(getName(), getType(), getStartDate(), getEndDate(), getDepartment(), getVenue());
 	}
 
 	public static String getName() {
 		System.out.println();
 		return Input.nextLine("Enter the Name of the Event: ");
 	}
+
+	public static Type getType() {
+		while (true) {
+			try {
+				System.out.println();
+				System.out.println("Available Event Types:");
+				Type.printAvailableTypes();
+				int selection = Input.nextInt("Enter the Number of the Event Type: ");
+				if (selection < 1 || selection > Type.availableTypes.size()) {
+					throw new ValidationException("Selection must be from 1 to " + Type.availableTypes.size() + ", Try Again");
+				}
+				return Type.availableTypes.get(selection - 1);
+			} catch (ValidationException e) {
+				System.out.println(e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Something Went Wrong, Try Again");
+			}
+		}
+	}
+
 	public static DateAndTime getStartDate() {
 		System.out.println();
-
-		System.out.println("Enter the Start Date of the Event: ");
-		int startDay = Input.nextInt("Day: ");
-		int startMonth = Input.nextInt("Month: ");
-		int startYear = Input.nextInt("Year: ");
-
-		System.out.println("Enter the Start Time of the Event: ");
-		int startHour = Input.nextInt("Hour: ");
-		int startMinute = Input.nextInt("Minutes: ");
-
-		return new DateAndTime(startDay, startMonth, startYear, startMinute, startHour);
+		int[] date = parseDate(Input.nextLine("Enter the Start Date of the Event (DD MM YYYY): "));
+		int[] time = parseTime(Input.nextLine("Enter the Start Time of the Event (HH MM): "));
+		return new DateAndTime(date[0], date[1], date[2], time[1], time[0]);
 	}
+
 	public static DateAndTime getEndDate() {
 		System.out.println();
+		int[] date = parseDate(Input.nextLine("Enter the End Date of the Event (DD MM YYYY): "));
+		int[] time = parseTime(Input.nextLine("Enter the End Time of the Event (HH MM): "));
+		return new DateAndTime(date[0], date[1], date[2], time[1], time[0]);
+	}
 
-		System.out.println("Enter the End Date of the Event: ");
-		int endDay = Input.nextInt("Day: ");
-		int endMonth = Input.nextInt("Month: ");
-		int endYear = Input.nextInt("Year: ");
+	// Parses "DD MM YYYY" into {day, month, year}
+	private static int[] parseDate(String line) {
+		String[] tokens = line.trim().split("\\s+");
+		if (tokens.length != 3) {
+			throw new IllegalArgumentException("Date must be in the format DD MM YYYY");
+		}
+		return new int[] {
+			Integer.parseInt(tokens[0]),
+			Integer.parseInt(tokens[1]),
+			Integer.parseInt(tokens[2])
+		};
+	}
 
-		System.out.println("Enter the End Time of the Event: ");
-		int endHour = Input.nextInt("Hour: ");
-		int endMinute = Input.nextInt("Minutes: ");
-
-		return new DateAndTime(endDay, endMonth, endYear, endMinute, endHour);
+	// Parses "HH MM" into {hour, minute}
+	private static int[] parseTime(String line) {
+		String[] tokens = line.trim().split("\\s+");
+		if (tokens.length != 2) {
+			throw new IllegalArgumentException("Time must be in the format HH MM");
+		}
+		return new int[] {
+			Integer.parseInt(tokens[0]),
+			Integer.parseInt(tokens[1])
+		};
 	}
 	public static Department getDepartment() {
 		while (true) {
@@ -119,7 +149,7 @@ public class Main {
 			try {
 				System.out.println();
 
-				System.out.println("Here are the Avilable Venues:");
+				System.out.println("Here are the Available Venue Types:");
 				System.out.println("1. Sport Area");
 				System.out.println("2. Lecture Hall");
 				System.out.println("3. Conference Hall");
@@ -164,7 +194,7 @@ public class Main {
 			} catch(ValidationException e) {
 				System.out.println(e.getMessage());
 			} catch (IndexOutOfBoundsException e) {
-				System.out.println("\nCould't find the Corresponding Venue, Try Again");
+				System.out.println("\nCouldn't find the Corresponding Venue, Try Again");
 			} catch(Exception e) {
 				System.out.println("Something Went Wrong, Try Again");
 			}
