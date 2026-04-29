@@ -72,7 +72,7 @@ public class Main {
 
 	public static String getName() {
 		if (Input.showPrompts) System.out.println();
-		return Input.nextLine("Enter the Name of the Event: ");
+		return Input.nextLine("Enter the Name of the Event: ").trim();
 	}
 
 	public static Type getType() {
@@ -192,7 +192,7 @@ public class Main {
 				selectedVenue = selectedVenueType.get(selection-1);
 
 				int attendees = Input.nextInt("Enter the Number of the Attendees of this Event: ");
-
+				System.out.println();
 				if (selectedVenue.checkCapacity(attendees)) {
 					return selectedVenue;
 				}
