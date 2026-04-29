@@ -59,6 +59,7 @@ public class EventManager {
 	public void showEventInfo(int index){
 		if (index < 0 || index > events.size() - 1){
 			System.out.println("[Error]: Invalid index. Has to be >= 0 and <= " + (events.size() - 1));
+			return;
 		}
 		showEventInfo(events.get(index));
 	}
