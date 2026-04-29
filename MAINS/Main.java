@@ -13,7 +13,7 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner input;
 		boolean showMenu;
-		String fileName = "Test.txt"; // Test.txt
+		String fileName = "Test.txt"; 
 		String sentinel;
 		int index;
 		Event event = null;
