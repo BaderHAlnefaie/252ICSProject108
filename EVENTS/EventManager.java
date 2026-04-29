@@ -10,7 +10,7 @@ public class EventManager {
 	
 	public void addEvent(Event event) {
 		if (!isFree(event)) {
-			System.out.println("Couldn't Add Event \"" + event.getName() + "\" Due To Date And Time Clash");
+			System.out.println("Couldn't Add Event \"" + event.getName() + "\" Due To Date And Time, and Venue Clash");
 			return;
 		}
 		// Find the first event that starts after the new one and insert before it
@@ -27,7 +27,8 @@ public class EventManager {
 	public boolean isFree(Event other) {
 		for (Event ev : events) {
 			if ((ev.getEndDateAndTime().compareTo(other.getStartDateAndTime())  > 0) &&
-				(ev.getStartDateAndTime().compareTo(other.getEndDateAndTime())  < 0)) {
+				(ev.getStartDateAndTime().compareTo(other.getEndDateAndTime())  < 0) &&
+				(ev.getVenue().compareTo(other.getVenue()) == 0)) {
 					return false;
 				}
 		}

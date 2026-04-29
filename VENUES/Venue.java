@@ -44,7 +44,7 @@ public abstract class Venue implements Comparable<Venue> {
     }
     @Override
     public int compareTo(Venue other) {
-        return this.name.compareTo(other.info);
+        return this.name.compareTo(other.name);
     }
 
     // Setters

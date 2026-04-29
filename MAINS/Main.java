@@ -11,9 +11,9 @@ import VENUES.*;
 public class Main {
 
 	public static void main(String[] args) {
-		// Scanner input;
+		Scanner input;
 		boolean showMenu;
-		String fileName = "[TEST File Here]"; // Test.txt
+		String fileName = "Test.txt"; // Test.txt
 		String sentinel;
 		int index;
 		Event event = null;
@@ -25,7 +25,7 @@ public class Main {
 		} catch(FileNotFoundException e) {
 			System.out.println("\n\n[ERROR]: File \"" + fileName + "\" Not Found");
 			System.out.println("Substituting to Manual Entry!");
-			// input = new Scanner(System.in);
+			input = new Scanner(System.in);
 			showMenu = true;
 		}
 		
