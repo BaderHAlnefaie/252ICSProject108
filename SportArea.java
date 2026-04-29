@@ -7,4 +7,9 @@ public class SportArea extends Venue {
         this.court = court;
         super.setInfo( "This is a " + this.court + " Court");
     }
+
+    @Override
+    public String toString() {
+        return this.name + ", " + this.court + "Court, Capacity: " + this.capacity;
+    }
 }

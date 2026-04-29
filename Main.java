@@ -165,9 +165,12 @@ public class Main {
 	}
 
 	public static String getName() {
+		System.out.println();
 		return Input.nextLine("Enter the Name of the Event: ");
 	}
 	public static DateAndTime getStartDate() {
+		System.out.println();
+
 		System.out.println("Enter the Start Date of the Event: ");
 		int startDay = Input.nextInt("Day: ");
 		int startMonth = Input.nextInt("Month: ");
@@ -180,6 +183,8 @@ public class Main {
 		return new DateAndTime(startDay, startMonth, startYear, startMinute, startHour);
 	}
 	public static DateAndTime getEndDate() {
+		System.out.println();
+
 		System.out.println("Enter the End Date of the Event: ");
 		int endDay = Input.nextInt("Day: ");
 		int endMonth = Input.nextInt("Month: ");
@@ -192,9 +197,13 @@ public class Main {
 		return new DateAndTime(endDay, endMonth, endYear, endMinute, endHour);
 	}
 	public static Department getDepartment() {
+		System.out.println();
+
 		return DepartmentsManager.getDepartment(Input.next("Enter the Department Name: "));
 	}
 	public static Venue getVenue() {
+		System.out.println();
+
 		System.out.println("Here are the Avilable Venues:");
 		System.out.println("1. Sport Area");
 		System.out.println("2. Lecture Hall");
@@ -202,8 +211,10 @@ public class Main {
 		System.out.println("4. Public Space");
 
 		int selection = Input.nextInt("Enter the Number of Your Selection: ");
-		
+
+		// Sport Area, Lecture Hall, Conference Hall or a Public Space
 		ArrayList<Venue> selectedVenueType;
+		Venue selectedVenue;
 
 		switch (selection) {
 			case 1:
@@ -222,11 +233,21 @@ public class Main {
 				throw new IllegalArgumentException("Selection must be from 1 to 4");
 		}
 
+		System.out.println();
 		System.out.println("Here are the Available Venues");
 		VenueManager.printVenues(selectedVenueType);
-		
-		selection = Input.nextInt("Enter the Number of Your Selection: ");
 
-		return selectedVenueType.get(selection-1);
+		System.out.println();
+		selection = Input.nextInt("Enter the Number of Your Selection: ");
+		selectedVenue = selectedVenueType.get(selection-1);
+
+		int attendees = Input.nextInt("Enter the Number of the Attendees of this Event: ");
+
+		if (selectedVenue.checkCapacity(attendees)) {
+			return selectedVenue;
+		}
+		else {
+			throw new IllegalArgumentException("The Attendees Exceeds the Venue's Capacity");
+		}
 	}
 }

@@ -7,5 +7,10 @@ public class LectureHall extends Venue {
         this.building = building;
         this.room = room;
         super.setInfo("This is a Lecture Hall in Building " + this.building + ", Room " + this.room);
-    }   
+    }
+
+    @Override
+    public String toString() {
+        return this.name + " @" + this.building + "-" + this.room + ", Capacity: " + this.capacity;
+    }
 }

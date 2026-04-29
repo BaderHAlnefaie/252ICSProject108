@@ -111,12 +111,4 @@ public abstract class VenueManager {
         }
     }
 
-    // public static ArrayList<Venue> searchByBuilding(int num) {
-    //     ArrayList<Venue> result = new ArrayList<>();
-        
-    //     for (Venue venue : availableVenues) {
-    //     }
-        
-    //     return result;
-    // }
 }

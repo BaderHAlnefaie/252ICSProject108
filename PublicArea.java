@@ -10,4 +10,9 @@ public class PublicArea extends Venue {
     private void setInfo() {
         super.setInfo("This is a Public Area Located in " + this.location);
     }
+
+    @Override
+    public String toString() {
+        return this.name + " @" + this.location + ", Capacity: " + this.capacity;
+    }
 }

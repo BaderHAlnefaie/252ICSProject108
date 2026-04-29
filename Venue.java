@@ -2,22 +2,31 @@
 // A venue is either a 
 // sports area (such as an athletic field), a lecture hall, a conference hall, or a public space.
 
-public abstract class Venue {
-    private String name;
-    private String info;
-    private int capacity;
+public abstract class Venue implements Comparable<Venue> {
+    protected String name;
+    protected String info;
+    protected int capacity;
 
-    // This might be helpful for an idea 
-    private String[] venues = {"Sports", "Lecture Hall", "Conference Hall", "Public Space"};
 
     // Constructor
-    public Venue(String name, /*String info,*/ int capacity) {
+    public Venue(String name, int capacity) {
         this.name = name;
-        // this.info = info;
         this.capacity = capacity;
     }
 
+    // This method check's if the capacity of the venue can hold the number of attendees,
+    // it will return true if it can, otherwise it will throw an Exception
+    public boolean checkCapacity(int attendees) throws IllegalArgumentException {
+        if (this.capacity >= attendees) {
+            return true;
+        } 
+        else {
+            return false;
+        }
+    }
 
+
+    // Getters
     public String getName() {
         return this.name;
     }
@@ -28,20 +37,17 @@ public abstract class Venue {
         return this.capacity;
     }
 
-    // public String printVenues() {
-    //     String str = "";
-
-    //     for (int i = 0; i < venues.length; i++){
-    //         str += i + "- " + venues[i] + "\n";
-    //     }
-
-    //     return str;
-    // }
-
+    // Overriding
     @Override
     public String toString() {
-        return this.name;
+        return this.name + ", Capacity: " + this.capacity;
     }
+    @Override
+    public int compareTo(Venue other) {
+        return this.name.compareTo(other.info);
+    }
+
+    // Setters
     protected void setInfo(String info) {
         this.info = info;
     }

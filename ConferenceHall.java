@@ -6,4 +6,9 @@ public class ConferenceHall extends Venue {
         this.building = building;
         super.setInfo("This is a Conferance Hall in Building " + this.building);
     }
+
+    @Override
+    public String toString() {
+        return this.name + " @" + this.building + ", Capacity: " + this.capacity;
+    }
 }
