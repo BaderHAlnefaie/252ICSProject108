@@ -15,14 +15,14 @@ public abstract class Venue implements Comparable<Venue> {
     }
 
     // This method check's if the capacity of the venue can hold the number of attendees,
-    // it will return true if it can, otherwise it will throw an Exception
-    public boolean checkCapacity(int attendees) throws IllegalArgumentException {
+    // it will return true if it can, otherwise it will throw a Validation Exception
+    public boolean checkCapacity(int attendees) throws ValidationException {
         if (this.capacity >= attendees) {
             return true;
-        } 
-        else {
-            return false;
         }
+        throw new ValidationException(
+            "The Number of Attendees Exceeds the Venue's Capacity,\nTry Again or Choose Another Venue"
+        );
     }
 
 

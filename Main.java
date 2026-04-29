@@ -14,10 +14,9 @@ public class Main {
 		Event event = null;
 		EventManager eventManager = new EventManager();
 		
-		try {
-		 	Scanner input = new Scanner(new File(fileName));
+		try(Scanner input = new Scanner(new File(fileName))) {
 		 	showMenu = false;
-		} catch(FileNotFoundException e){
+		} catch(FileNotFoundException e) {
 			System.out.println("\n\n[ERROR]: File \"" + fileName + "\" Not Found");
 			System.out.println("Substituting to Manual Entry!");
 			// input = new Scanner(System.in);
@@ -197,57 +196,71 @@ public class Main {
 		return new DateAndTime(endDay, endMonth, endYear, endMinute, endHour);
 	}
 	public static Department getDepartment() {
-		System.out.println();
-
-		return DepartmentsManager.getDepartment(Input.next("Enter the Department Name: "));
+		while (true) {
+			try {
+				System.out.println();
+				return DepartmentsManager.getDepartment(Input.next("Enter the Department Name: "));
+			} catch(ValidationException e) {
+				System.out.println(e.getMessage());
+			} catch(Exception e) {
+				System.out.println("Something Went Wrong, Try Again");
+			}
+		}
 	}
 	public static Venue getVenue() {
-		System.out.println();
+		while (true) {
+			try {
+				System.out.println();
 
-		System.out.println("Here are the Avilable Venues:");
-		System.out.println("1. Sport Area");
-		System.out.println("2. Lecture Hall");
-		System.out.println("3. Conference Hall");
-		System.out.println("4. Public Space");
+				System.out.println("Here are the Avilable Venues:");
+				System.out.println("1. Sport Area");
+				System.out.println("2. Lecture Hall");
+				System.out.println("3. Conference Hall");
+				System.out.println("4. Public Space");
 
-		int selection = Input.nextInt("Enter the Number of Your Selection: ");
+				int selection = Input.nextInt("Enter the Number of Your Selection: ");
 
-		// Sport Area, Lecture Hall, Conference Hall or a Public Space
-		ArrayList<Venue> selectedVenueType;
-		Venue selectedVenue;
+				// Sport Area, Lecture Hall, Conference Hall or a Public Space
+				ArrayList<Venue> selectedVenueType;
+				Venue selectedVenue;
 
-		switch (selection) {
-			case 1:
-				selectedVenueType = VenueManager.getSportAreas();
-				break;
-			case 2:
-				selectedVenueType = VenueManager.getLectureHalls();
-				break;
-			case 3:
-				selectedVenueType = VenueManager.getConferenceHalls();
-				break;
-			case 4:
-				selectedVenueType = VenueManager.getPublicAreas();
-				break;
-			default:
-				throw new IllegalArgumentException("Selection must be from 1 to 4");
-		}
+				switch (selection) {
+					case 1:
+						selectedVenueType = VenueManager.getSportAreas();
+						break;
+					case 2:
+						selectedVenueType = VenueManager.getLectureHalls();
+						break;
+					case 3:
+						selectedVenueType = VenueManager.getConferenceHalls();
+						break;
+					case 4:
+						selectedVenueType = VenueManager.getPublicAreas();
+						break;
+					default:
+						throw new ValidationException("Selection must be from 1 to 4, Try Again");
+				}
 
-		System.out.println();
-		System.out.println("Here are the Available Venues");
-		VenueManager.printVenues(selectedVenueType);
+				System.out.println();
+				System.out.println("Here are the Available Venues");
+				VenueManager.printVenues(selectedVenueType);
 
-		System.out.println();
-		selection = Input.nextInt("Enter the Number of Your Selection: ");
-		selectedVenue = selectedVenueType.get(selection-1);
+				System.out.println();
+				selection = Input.nextInt("Enter the Number of Your Selection: ");
+				selectedVenue = selectedVenueType.get(selection-1);
 
-		int attendees = Input.nextInt("Enter the Number of the Attendees of this Event: ");
+				int attendees = Input.nextInt("Enter the Number of the Attendees of this Event: ");
 
-		if (selectedVenue.checkCapacity(attendees)) {
-			return selectedVenue;
-		}
-		else {
-			throw new IllegalArgumentException("The Attendees Exceeds the Venue's Capacity");
+				if (selectedVenue.checkCapacity(attendees)) {
+					return selectedVenue;
+				}
+			} catch(ValidationException e) {
+				System.out.println(e.getMessage());
+			} catch (IndexOutOfBoundsException e) {
+				System.out.println("\nCould't find the Corresponding Venue, Try Again");
+			} catch(Exception e) {
+				System.out.println("Something Went Wrong, Try Again");
+			}
 		}
 	}
 }

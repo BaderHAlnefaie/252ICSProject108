@@ -39,7 +39,7 @@ public abstract class VenueManager {
                         result.add(new PublicArea(name, capacity, location));
                         break;
                     default:
-                        throw new Exception("Couldn't Find the Correspnding Venue");
+                        throw new ValidationException("Couldn't Find the Correspnding Venue");
                 }
             }
         } catch (FileNotFoundException e) {

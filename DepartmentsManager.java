@@ -21,14 +21,14 @@ public abstract class DepartmentsManager {
     }
 
     // This Method returns the Department based on the user input
-    // If the the department does not exist it will throw an IllegalArgumentException
-    public static Department getDepartment(String name) /*throws IllegalArgumentException*/ {
+    // If the the department does not exist it will throw a ValidationException
+    public static Department getDepartment(String name) throws ValidationException {
         for (Department dept : availableDepartments) {
             if (name.equals(dept.getName())) {
                 return dept;
             }
         }
-        throw new IllegalArgumentException("Department " + name + " was not found");
+        throw new ValidationException("Department \"" + name + "\" was not found, Choose Another Department");
     }
     // Example:
     // Enter the name of the department: ICS (In the Main class)
