@@ -1,3 +1,9 @@
+package EVENTS;
+
+import DEPARTMENTS.*;
+import VENUES.*;
+
+
 import java.util.ArrayList;
 public class EventManager {
 	private ArrayList<Event> events = new ArrayList<>();

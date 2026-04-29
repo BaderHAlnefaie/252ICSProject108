@@ -1,6 +1,11 @@
+package DEPARTMENTS;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import MAINS.*;
+
+
 
 public abstract class DepartmentsManager {
     public static ArrayList<Department> availableDepartments = addAllDepartments();

@@ -1,3 +1,9 @@
+package EVENTS;
+
+import DEPARTMENTS.*;
+import VENUES.*;
+
+
 public class Event {
 	private String name;
 	private DateAndTime start;

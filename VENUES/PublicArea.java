@@ -1,3 +1,4 @@
+package VENUES;
 public class PublicArea extends Venue {
     private String location;
 

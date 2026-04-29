@@ -1,7 +1,12 @@
+package MAINS;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import DEPARTMENTS.*;
+import EVENTS.*;
+import VENUES.*;
 
 public class Main {
 

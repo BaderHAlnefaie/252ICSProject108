@@ -1,7 +1,10 @@
+package VENUES;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import MAINS.ValidationException;
 
 public abstract class VenueManager {
     public static ArrayList<Venue> availableVenues = addAllVenues();

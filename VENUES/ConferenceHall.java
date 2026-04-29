@@ -1,3 +1,4 @@
+package VENUES;
 public class ConferenceHall extends Venue {
     private int building;
 

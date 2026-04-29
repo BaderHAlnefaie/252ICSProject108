@@ -1,3 +1,4 @@
+package EVENTS;
 //import java.util.Scanner;
 public class DateAndTime implements Comparable<DateAndTime>{
 

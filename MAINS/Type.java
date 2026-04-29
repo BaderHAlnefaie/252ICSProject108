@@ -1,3 +1,4 @@
+package MAINS;
 public class Type {
 // Each event can be classified as sports, social, religious or academic depending on
 // the classification; specific event information is stored.

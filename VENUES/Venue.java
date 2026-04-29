@@ -1,6 +1,6 @@
+package VENUES;
 
-// A venue is either a 
-// sports area (such as an athletic field), a lecture hall, a conference hall, or a public space.
+import MAINS.ValidationException;
 
 public abstract class Venue implements Comparable<Venue> {
     protected String name;
