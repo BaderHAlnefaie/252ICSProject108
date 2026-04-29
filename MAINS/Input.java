@@ -2,11 +2,16 @@ package MAINS;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public abstract class Input {
-    private static Scanner scnr = new Scanner(System.in);
+public class Input {
+    private Scanner scnr;
 
-    public static int nextInt() { return nextInt(""); } // OverLoading
-    public static int nextInt(String msg) {
+    // Constructor
+    public Input(Scanner input) {
+        this.scnr = input;
+    }
+
+    public int nextInt() { return nextInt(""); } // OverLoading
+    public int nextInt(String msg) {
         System.out.print(msg);
         while (true) {
             try {
@@ -23,8 +28,8 @@ public abstract class Input {
         }
     }
 
-    public static String nextLine() { return nextLine(""); } // OverLoading
-    public static String nextLine(String msg) {
+    public String nextLine() { return nextLine(""); } // OverLoading
+    public String nextLine(String msg) {
         System.out.print(msg);
         while (true) {
             try {
@@ -37,8 +42,8 @@ public abstract class Input {
         }
     }
 
-    public static String next(){ return next(""); } // OverLoading
-    public static String next(String msg) {
+    public String next(){ return next(""); } // OverLoading
+    public String next(String msg) {
         System.out.print(msg);
         while (true) {
             try {
