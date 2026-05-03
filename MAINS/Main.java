@@ -29,33 +29,39 @@ public class Main {
 		System.out.println("\n\nWelcome To Bader's Event Managing System!\n");
 
 		do {
-			if (showMenu) {
-				printMenu();
-			}
-
-			sentinel = Input.nextLine().trim().toUpperCase();
-
-			if (sentinel.equals("C")) {
-				try {
-					eventManager.addEvent(eventCreation());
-				} catch (IllegalArgumentException e) {
-					System.out.println("[ERROR]: " + e.getMessage());
-					System.out.println("Event was not created. Returning to menu.");
-				} catch (Exception e) {
-					System.out.println("[ERROR]: Could not create event - " + e.getMessage());
+			try {
+				if (showMenu) {
+					printMenu();
 				}
-			} else if (sentinel.equals("SE")) {
-				System.out.println();
-				eventManager.showEvents();
-			} else if (sentinel.equals("SI")) {
-				index = Input.nextInt("Enter the Event's Index: ");
-				eventManager.showEventInfo(index);
-			} else if (sentinel.equals("AD")) {
-				addDepartment();
-			} else if (sentinel.equals("AV")) {
-				addVenue();
-			} else if (!sentinel.equals("Q") && !sentinel.isEmpty()) {
-				System.out.println("Unknown command: \"" + sentinel + "\". Try C, SE, SI, or Q.");
+
+				sentinel = Input.nextLine().trim().toUpperCase();
+
+				if (sentinel.equals("C")) {
+					try {
+						eventManager.addEvent(eventCreation());
+					} catch (IllegalArgumentException e) {
+						System.out.println("[ERROR]: " + e.getMessage());
+						System.out.println("Event was not created. Returning to menu.");
+					} catch (Exception e) {
+						System.out.println("[ERROR]: Could not create event - " + e.getMessage());
+					}
+				} else if (sentinel.equals("SE")) {
+					System.out.println();
+					eventManager.showEvents();
+				} else if (sentinel.equals("SI")) {
+					index = Input.nextInt("Enter the Event's Index: ");
+					eventManager.showEventInfo(index);
+				} else if (sentinel.equals("AD")) {
+					addDepartment();
+				} else if (sentinel.equals("AV")) {
+					addVenue();
+				} else if (!sentinel.equals("Q") && !sentinel.isEmpty()) {
+					System.out.println("Unknown command: \"" + sentinel + "\". Try C, SE, SI, or Q.");
+				}
+			} catch (CancelationException e) {
+				System.out.println(e.getMessage());
+				sentinel = "";
+				continue;
 			}
 
 		} while (!sentinel.equals("Q"));
@@ -95,6 +101,8 @@ public class Main {
 				return Type.availableTypes.get(selection - 1);
 			} catch (ValidationException e) {
 				System.out.println(e.getMessage());
+			} catch (CancelationException e) {
+				throw e;
 			} catch (Exception e) {
 				System.out.println("Something Went Wrong, Try Again");
 			}
@@ -151,9 +159,14 @@ public class Main {
 				int choice = Input.nextInt("Enter the Number of Your Selection: ");
 				return DepartmentsManager.departmentSelection(choice);
 				// return DepartmentsManager.getDepartment(name);
-			} catch(ValidationException e) {
+			}
+			catch(ValidationException e) {
 				System.out.println(e.getMessage());
-			} catch(Exception e) {
+			}
+			catch (CancelationException e) {
+				throw e;
+			}
+			catch(Exception e) {
 				System.out.println("Something Went Wrong, Try Again");
 			}
 		}
@@ -209,11 +222,17 @@ public class Main {
 				if (selectedVenue.checkCapacity(attendees)) {
 					return selectedVenue;
 				}
-			} catch(ValidationException e) {
+			}
+			catch(ValidationException e) {
 				System.out.println(e.getMessage());
-			} catch (IndexOutOfBoundsException e) {
+			}
+			catch (IndexOutOfBoundsException e) {
 				System.out.println("\nCouldn't find the Corresponding Venue, Try Again");
-			} catch(Exception e) {
+			}
+			catch (CancelationException e) {
+				throw e;
+			}
+			catch(Exception e) {
 				System.out.println("Something Went Wrong, Try Again");
 			}
 		}
@@ -260,9 +279,14 @@ public class Main {
 					throw new ValidationException("Couldn't Find the Corresponding Venue");
             }
 			System.out.println("Venue \"" + name + "\" Added Successfully");
-		} catch (ValidationException e) {
+		}
+		catch (ValidationException e) {
 			System.out.println(e.getMessage());
-		} catch (Exception e) {
+		}
+		catch (CancelationException e) {
+			throw e;
+		}
+		catch (Exception e) {
 			System.out.println("Something Went Wrong");
 		}
 	}
@@ -277,6 +301,9 @@ public class Main {
 		catch (ValidationException e) {
 			System.out.println(e.getMessage());
 		}
+		catch (CancelationException e) {
+				throw e;
+		} 
 		catch (Exception e) {
 			System.out.println("Something Went Wrong");
 		}
