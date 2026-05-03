@@ -33,7 +33,7 @@ public class Main {
 				printMenu();
 			}
 
-			sentinel = Input.nextLine();
+			sentinel = Input.nextLine().trim().toUpperCase();
 
 			if (sentinel.equals("C")) {
 				try {
@@ -137,8 +137,15 @@ public class Main {
 	public static Department getDepartment() {
 		while (true) {
 			try {
-				if (Input.showPrompts) System.out.println();
-				return DepartmentsManager.getDepartment(Input.next("Enter the Department Name: "));
+				if (Input.showPrompts) {
+					System.out.println();
+					System.out.println("Here are the Available Departments:");
+					DepartmentsManager.showDepartments();
+					System.out.println();
+				}
+				int choice = Input.nextInt("Enter the Number of Your Selection: ");
+				String name = DepartmentsManager.selectionName(choice);
+				return DepartmentsManager.getDepartment(name);
 			} catch(ValidationException e) {
 				System.out.println(e.getMessage());
 			} catch(Exception e) {
@@ -146,6 +153,7 @@ public class Main {
 			}
 		}
 	}
+
 	public static Venue getVenue() {
 		while (true) {
 			try {

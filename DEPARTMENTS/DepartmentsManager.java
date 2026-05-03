@@ -27,6 +27,20 @@ public abstract class DepartmentsManager {
         return result;
     }
 
+    public static void showDepartments() {
+        int i = 1;
+        for (Department dept : availableDepartments) {
+            System.out.println((i++) + ". " + dept.getName());
+        }
+    }
+
+    public static String selectionName(int selection) throws ValidationException {
+        if (selection < 1 || selection > availableDepartments.size()) {
+            throw new ValidationException("Selection must be from 1 to " + availableDepartments.size() + ", Try Again");
+        }
+        return availableDepartments.get(selection - 1).getName();
+    }
+
     // This Method returns the Department based on the user input
     // If the the department does not exist it will throw a ValidationException
     public static Department getDepartment(String name) throws ValidationException {
