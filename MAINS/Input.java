@@ -7,6 +7,7 @@ public abstract class Input {
     public static boolean showPrompts = true;
 
     public static void setSource(Scanner input) {
+        scnr.close();
         scnr = input;
     }
 

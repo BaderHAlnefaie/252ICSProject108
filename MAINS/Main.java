@@ -50,6 +50,10 @@ public class Main {
 			} else if (sentinel.equals("SI")) {
 				index = Input.nextInt("Enter the Event's Index: ");
 				eventManager.showEventInfo(index);
+			} else if (sentinel.equals("AD")) {
+				addDepartment();
+			} else if (sentinel.equals("AV")) {
+				addVenue();
 			} else if (!sentinel.equals("Q") && !sentinel.isEmpty()) {
 				System.out.println("Unknown command: \"" + sentinel + "\". Try C, SE, SI, or Q.");
 			}
@@ -63,7 +67,8 @@ public class Main {
 		System.out.println("Enter: \"Q\" to quit the program.");
 		System.out.println("Enter \"SE\" to show the events.");
 		System.out.println("Enter \"SI\" to show one event in detail");
-
+		System.out.println("Enter \"AD\" to Add a New Department");
+		System.out.println("Enter \"AV\" to Add a New Venue");
 	}
 
 	public static Event eventCreation() {
@@ -144,8 +149,8 @@ public class Main {
 					System.out.println();
 				}
 				int choice = Input.nextInt("Enter the Number of Your Selection: ");
-				String name = DepartmentsManager.selectionName(choice);
-				return DepartmentsManager.getDepartment(name);
+				return DepartmentsManager.departmentSelection(choice);
+				// return DepartmentsManager.getDepartment(name);
 			} catch(ValidationException e) {
 				System.out.println(e.getMessage());
 			} catch(Exception e) {
@@ -211,6 +216,72 @@ public class Main {
 			} catch(Exception e) {
 				System.out.println("Something Went Wrong, Try Again");
 			}
+		}
+	}
+
+
+
+	public static void addVenue() {
+		try {
+			String name = Input.nextLine("Enter the Name of the Venue: ");
+			int capacity = Input.nextInt("Enter the Capacity of the Venue: ");
+
+			System.out.println();
+
+			System.out.println("Here are the Available Venue Types:");
+			System.out.println("1. Sport Area");
+			System.out.println("2. Lecture Hall");
+			System.out.println("3. Conference Hall");
+			System.out.println("4. Public Space");
+			System.out.println();
+
+			int typeSelection = Input.nextInt("Enter the Number of your Selection: ");
+			System.out.println();
+
+			switch (typeSelection) {
+				case 1:
+					String court = Input.nextLine("Enter the Name of the Court: ");
+					VenueManager.addVenue(new SportArea(name, capacity, court));
+					break;
+				case 2:
+					int lecBuilding = Input.nextInt("Enter the Building Number: ");
+					int room = Input.nextInt("Enter the Room Number: ");
+					VenueManager.addVenue(new LectureHall(name, capacity, lecBuilding, room));
+					break;
+				case 3:
+					int conBuilding = Input.nextInt("Enter the Building Number: ");
+					VenueManager.addVenue(new ConferenceHall(name, capacity, conBuilding));
+					break;
+				case 4:
+					String location = Input.nextLine("Enter the Location: ");
+					VenueManager.addVenue(new PublicArea(name, capacity, location));
+					break;
+				default:
+					throw new ValidationException("Couldn't Find the Corresponding Venue");
+            }
+			System.out.println("Venue \"" + name + "\" Added Successfully");
+		} catch (ValidationException e) {
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Something Went Wrong");
+		}
+	}
+
+	public static void addDepartment() {
+		try {
+			String deptName = Input.next("Enter the Name of the Department: ");
+			String personName = Input.next("Enter the Name of the Person Responsible for this Department: ");
+
+			DepartmentsManager.addDepartment( new Department(deptName, personName) );
+		}
+		catch (ValidationException e) {
+			System.out.println(e.getMessage());
+		}
+		catch (Exception e) {
+			System.out.println("Something Went Wrong");
+		}
+		finally {
+			System.out.println();
 		}
 	}
 }

@@ -8,9 +8,9 @@ import MAINS.*;
 
 
 public abstract class DepartmentsManager {
-    public static ArrayList<Department> availableDepartments = addAllDepartments();
+    private static ArrayList<Department> availableDepartments = addAllDepartments();
 
-    // A function to add all the available Departments
+    // A function to add all the available Departments from the file
     static private ArrayList<Department> addAllDepartments() {
         ArrayList<Department> result = new ArrayList<>();
         try (Scanner fileScnr = new Scanner(new FileInputStream("Departments.txt"))) {
@@ -27,6 +27,15 @@ public abstract class DepartmentsManager {
         return result;
     }
 
+        static public void addDepartment(Department department) throws ValidationException {
+            for (Department dept : availableDepartments) {
+                if (department.getName().toUpperCase().equals(dept.getName())) {
+                    throw new ValidationException("Department Hasn't been Addd, A Department with the Same Name Already Exist");
+                }
+            }
+            availableDepartments.add(department);
+        }
+
     public static void showDepartments() {
         int i = 1;
         for (Department dept : availableDepartments) {
@@ -34,26 +43,22 @@ public abstract class DepartmentsManager {
         }
     }
 
-    public static String selectionName(int selection) throws ValidationException {
+    public static Department departmentSelection(int selection) throws ValidationException {
         if (selection < 1 || selection > availableDepartments.size()) {
             throw new ValidationException("Selection must be from 1 to " + availableDepartments.size() + ", Try Again");
         }
-        return availableDepartments.get(selection - 1).getName();
+        return availableDepartments.get(selection - 1);
     }
 
     // This Method returns the Department based on the user input
     // If the the department does not exist it will throw a ValidationException
-    public static Department getDepartment(String name) throws ValidationException {
-        for (Department dept : availableDepartments) {
-            if (name.equals(dept.getName())) {
-                return dept;
-            }
-        }
-        throw new ValidationException("Department \"" + name + "\" was not found, Choose Another Department");
-    }
-    // Example:
-    // Enter the name of the department: ICS (In the Main class)
-    // This will return the ICS Department (of Type Department)
-    // If the user input was "xyz" it will throw an Exception
-    // Important: the Exception must be handeled in the main class
+    // public static Department getDepartment(String name) throws ValidationException {
+    //     for (Department dept : availableDepartments) {
+    //         if (name.equals(dept.getName())) {
+    //             return dept;
+    //         }
+    //     }
+    //     throw new ValidationException("Department \"" + name + "\" was not found, Choose Another Department");
+    // }
+
 }   

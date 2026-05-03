@@ -7,7 +7,7 @@ import java.util.Scanner;
 import MAINS.ValidationException;
 
 public abstract class VenueManager {
-    public static ArrayList<Venue> availableVenues = addAllVenues();
+    private static ArrayList<Venue> availableVenues = addAllVenues();
 
     // This method add all the available Venues from the file "Venues.txt"
     private static ArrayList<Venue> addAllVenues() {
@@ -18,7 +18,6 @@ public abstract class VenueManager {
             fileScnr.nextLine(); // Just to Ignore the First 2 Lines in the File
             fileScnr.nextLine();
             while (fileScnr.hasNextLine()) {
-                // String[] line = fileScnr.nextLine().split(",");
                 int num = fileScnr.nextInt();
                 String name = fileScnr.next();
                 int capacity = fileScnr.nextInt();
@@ -56,6 +55,14 @@ public abstract class VenueManager {
         return result;
     }
 
+    public static void addVenue(Venue venue) throws ValidationException {
+        for (Venue v : availableVenues) {
+            if (venue.getName().equals(v.getName())) {
+                throw new ValidationException("Venue Hasn't been Addd, A Venue with the Same Name Already Exist");
+            }
+        }
+        availableVenues.add(venue);
+    }
 
     public static ArrayList<Venue> getConferenceHalls() {
         ArrayList<Venue> result = new ArrayList<>();
