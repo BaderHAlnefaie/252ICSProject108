@@ -12,7 +12,7 @@ public class Main {
 	public static void main(String[] args) {
 		boolean showMenu;
 		String fileName = "[FILE_NAME_GOES_HERE]";
-		String sentinel;
+		String sentinel = "start";
 		int index;
 		EventManager eventManager = new EventManager();
 
@@ -30,7 +30,7 @@ public class Main {
 
 		do {
 			try {
-				if (showMenu) {
+				if (showMenu && !sentinel.isEmpty()) {
 					printMenu();
 				}
 
@@ -60,7 +60,7 @@ public class Main {
 				}
 			} catch (CancelationException e) {
 				System.out.println(e.getMessage());
-				sentinel = "";
+				sentinel = "again";
 				continue;
 			}
 
