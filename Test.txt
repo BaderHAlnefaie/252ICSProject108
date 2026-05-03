@@ -5,7 +5,7 @@ Aramco Football
 14 00
 2 1 2000
 16 00
-AE
+5
 1
 1
 400
@@ -16,7 +16,7 @@ KFUPM Hackathon
 09 00
 6 3 2000
 18 00
-ICS
+1
 3
 1
 200
@@ -27,7 +27,7 @@ Volleyball Tournament
 17 00
 10 4 2000
 19 00
-EE
+7
 1
 2
 300
@@ -38,7 +38,7 @@ Escape Room
 18 00
 27 4 2026
 19 30
-ME
+8
 4
 1
 5
