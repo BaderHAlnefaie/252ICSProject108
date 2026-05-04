@@ -26,7 +26,7 @@ public class Main {
 			showMenu = true;
 		}
 
-		System.out.println("\n\nWelcome To Bader's Event Managing System!\n");
+		System.out.println("\n\nWelcome To ALNEFAIE-ALGHAMDI Event Managing System!\n");
 
 		do {
 			try {
