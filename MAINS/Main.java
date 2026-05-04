@@ -51,6 +51,8 @@ public class Main {
 				} else if (sentinel.equals("SI")) {
 					index = Input.nextInt("Enter the Event's Index: ");
 					eventManager.showEventInfo(index);
+				} else if (sentinel.equals("S")) {
+					searchforEvent(eventManager);
 				} else if (sentinel.equals("AD")) {
 					addDepartment();
 				} else if (sentinel.equals("AV")) {
@@ -73,6 +75,7 @@ public class Main {
 		System.out.println("Enter: \"Q\" to quit the program.");
 		System.out.println("Enter \"SE\" to show the events.");
 		System.out.println("Enter \"SI\" to show one event in detail");
+		System.out.println("Enter \"S\" to Search for Events");
 		System.out.println("Enter \"AD\" to Add a New Department");
 		System.out.println("Enter \"AV\" to Add a New Venue");
 	}
@@ -311,4 +314,59 @@ public class Main {
 			System.out.println();
 		}
 	}
+
+	public static void searchforEvent(EventManager eventManager) {
+		try {
+			System.out.println("Search by:");
+			System.out.println("1. Name");
+			System.out.println("2. Type");
+
+			int selection = Input.nextInt("Enter the Number of Your Selection: ");
+			ArrayList<Event> searchedEvents = new ArrayList<>();
+
+			switch (selection) {
+				case 1:
+					String name = Input.next("Enter the Name: ");
+					searchedEvents = eventManager.searchByName(name);
+					break;
+			
+				case 2:
+					Type.printAvailableTypes();
+					selection = Input.nextInt("Enter the Number of Your Selection: ");
+					searchedEvents = eventManager.searchByType(Type.availableTypes.get(selection-1).getName());
+					break;
+				default:
+					throw new ValidationException("Selection Must be from 1 to 2");
+			}
+
+			if (!searchedEvents.isEmpty()) {
+				for (int i = 0; i < searchedEvents.size(); i++) {
+					System.out.println((i+1) + ". " + searchedEvents.get(i));
+
+				}
+				System.out.println();
+				selection = Input.nextInt("Enter the Number of the Event to Show it: ");
+
+				if (selection < 1 || selection > searchedEvents.size()) {
+					throw new ValidationException("Cannot Find the Corresponding Event");
+				}
+
+				System.out.println();
+				eventManager.showEventInfo(searchedEvents.get(selection-1));
+			} else {
+				System.out.println();
+				System.out.println("No Events to Show");
+				System.out.println();
+			}
+		}
+		catch (ValidationException e) {
+			System.out.println(e.getMessage());
+		}
+		catch (Exception e) {
+			System.out.println("Something Went Wrong");
+		}
+	}
+
 }
+
+

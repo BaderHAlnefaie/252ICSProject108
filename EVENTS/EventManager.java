@@ -90,4 +90,24 @@ public class EventManager {
 	
 		System.out.println(line);
 	}
+
+
+	public ArrayList<Event> searchByName(String name) {
+		ArrayList<Event> result = new ArrayList<>();
+		for (Event event : events) {
+			if (event.getName().contains(name)) {
+				result.add(event);
+			}
+		}
+		return result;
+	}
+	public ArrayList<Event> searchByType(String name) {
+		ArrayList<Event> result = new ArrayList<>();
+		for (Event event : events) {
+			if (event.getType().getName().equals(name)) {
+				result.add(event);
+			}
+		}
+		return result;
+	}
 }

@@ -50,15 +50,4 @@ public abstract class DepartmentsManager {
         return availableDepartments.get(selection - 1);
     }
 
-    // This Method returns the Department based on the user input
-    // If the the department does not exist it will throw a ValidationException
-    // public static Department getDepartment(String name) throws ValidationException {
-    //     for (Department dept : availableDepartments) {
-    //         if (name.equals(dept.getName())) {
-    //             return dept;
-    //         }
-    //     }
-    //     throw new ValidationException("Department \"" + name + "\" was not found, Choose Another Department");
-    // }
-
 }   

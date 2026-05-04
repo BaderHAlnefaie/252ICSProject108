@@ -40,6 +40,9 @@ public class Type {
         }
         return "This is a " + this.name + " Event";
     }
+    public String getName() {
+        return this.name;
+    }
 
     @Override
     public String toString() {
